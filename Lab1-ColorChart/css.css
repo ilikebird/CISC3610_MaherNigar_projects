@@ -1,0 +1,9 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16x;
+}
+
+.container{
+    margin: 0 auto;
+    max-width: 1200px;
+     }

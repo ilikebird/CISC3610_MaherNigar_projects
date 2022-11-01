@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Text Form</title>
+    <link rel="stylesheet" href="css.css" />
+  </head>
+  <body align="center">
+    <br /><br /><br />
+    <label for="name">Your Name</label>
+    <input type="text" id="name" name="name" />
+    <br />
+    <br />
+    <input type="text" id="bgColor" />
+
+    <input type="color" id="rgbcolor" />
+    <input
+      type="button"
+      id="colorButton"
+      value="Click Here to Change the color"
+      onclick="changeBackground()"
+    />
+    <!--This is for text color change-->
+    <h2 id="heading">You can change your text color here</h2>
+    <input type="color" id="myInput" onclick="chnageText()" />
+    <button id="myButton">Click here to change color</button>
+
+    <!--This is for text size-->
+    <div class="container">
+      <header class="container-head">
+        <h2>Resize Your Text</h2>
+        <div class="slider-container">
+          <p class="font-size-text">
+            <span id="pixels">40</span>
+            px
+          </p>
+          <input type="range" min="12" max="48" value="40" id="slider" />
+        </div>
+      </header>
+      <div class="items">
+        <div class="row">
+          <p>Here are my text to test!</p>
+        </div>
+      </div>
+    </div>
+    <script src="slider.js"></script>
+    <script src="javascript.js"></script>
+  </body>
+</html>
