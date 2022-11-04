@@ -1,0 +1,36 @@
+
+  body {
+    background-image: url('pictures/nature-park-horizontal-scene-with-river-and-mountain-background-free-vector.jpeg');
+  }
+
+  /*Animation*/
+.rocket {
+  width: 220px;
+  height: 150px;
+  background: red;
+  position: relative;
+  animation: rocket 10s infinite;
+}
+
+@keyframes rocket {
+  from {left: 0px;}
+  to {left: 1425px;}
+}
+
+.pic{
+  display: inline-block;
+  height: 100%;
+}
+
+.pic img{
+  display: inline-block;
+  max-height: 500%;
+  bottom: 240;
+  position: absolute;
+
+}
+.pic img:target{
+  position: relative;
+  top: 0;
+  max-height: 100%;
+}
