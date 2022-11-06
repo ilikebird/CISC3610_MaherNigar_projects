@@ -1,0 +1,78 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio Lab</title>
+    <link rel="stylesheet" href="css.css" />
+  </head>
+  <body>
+    <h1 id="color1">
+      Please Click on the products or buttons to play the sounds!
+    </h1>
+    <h3 id="color2">
+      The audios from your recomended site didn't work for me (even on chrome),
+      So I has to use this sound from w3schools.
+    </h3>
+    <!--Audio-->
+    <audio id="audio_play">
+      <!--  <source src="http://www.w3schools.com/tags/horse.ogg" type="audio/ogg" />-->
+      <source src="http://www.w3schools.com/tags/horse.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="audio_play2">
+      <source src="http://www.w3schools.com/tags/horse.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="audio_play3">
+      <source src="http://www.w3schools.com/tags/horse.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="audio_play4">
+      <source src="http://www.w3schools.com/tags/horse.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!--Image here-->
+    <img id="image" src="image/headphones.jpeg" alt="image" usemap="#workmap" />
+
+    <map name="workmap">
+      <button
+        id="button1"
+        onClick="document.getElementById('audio_play').play(); return false;"
+      >
+        <area shape="rect" coords="80,60,396,470" alt="Computer" />
+        Button1
+      </button>
+      <!--Button2-->
+      <button
+        id="button2"
+        onClick="document.getElementById('audio_play2').play(); return false;"
+      >
+        <area shape="rect" coords="232,317,1370,1185" alt="Phone" />Button2
+      </button>
+      <!--Button3-->
+
+      <button
+        id="button1"
+        onClick="document.getElementById('audio_play').play(); return false;"
+      >
+        <area shape="rect" coords="232,117,1370,1185" alt="Computer" />
+        Button3
+      </button>
+      <!--Button4-->
+      <button
+        id="button1"
+        onClick="document.getElementById('audio_play').play(); return false;"
+      >
+        <area shape="rect" coords="232,117,1370,1185" alt="Computer" />
+        Button4
+      </button>
+      <!--Button5-->
+      <button
+        id="button1"
+        onClick="document.getElementById('audio_play').play(); return false;"
+      >
+        <area shape="rect" coords="232,117,1370,1185" alt="Computer" />
+        Button5
+      </button>
+    </map>
+    <!-------------------------------------------->
+  </body>
+</html>
