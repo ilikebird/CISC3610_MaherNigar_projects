@@ -12,32 +12,94 @@ ctx.fillStyle = "black"
 ctx.lineWidth = 5;
 circle2 = ctx.arc(700, 200, 120, 3, 9 * Math.PI);
 ctx.fill(circle2)
+ });
 
 
 
-//Voice recognision part
-const grammar = '#JSGF V1.0; grammar colors; public <color> = aqua | azure | beige | bisque | black | blue | brown | chocolate | coral | crimson | cyan | fuchsia | ghostwhite | gold | goldenrod | gray | green | indigo | ivory | khaki | lavender | lime | linen | magenta | maroon | moccasin | navy | olive | orange | orchid | peru | pink | plum | purple | red | salmon | sienna | silver | snow | tan | teal | thistle | tomato | turquoise | violet | white | yellow ;'
-const recognition = new SpeechRecognition();
-const speechRecognitionList = new SpeechGrammarList();
-speechRecognitionList.addFromString(grammar, 1);
-recognition.grammars = speechRecognitionList;
 
-const diagnostic = document.querySelector('.output');
-const bg = document.querySelector('html');
 
-document.body.onclick = () => {
-  recognition.start();
-  console.log('Ready to receive a color command.');
-}
+  var recognizing;
+  var recognition = new webkitSpeechRecognition();
+  recognition.continuous = true;
+  recognition.onresult = function (event) {
+    for (var i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        TEXTAREA.value += event.results[i][0].transcript;
+      }
+    }
+  }
 
-abortBtn.onclick = () => {
-  recognition.abort();
-  console.log('Speech recognition aborted.');
-}
+  function reset() {
+    recognizing = false;
+    button.innerHTML = "Click to Speak";
+  }
 
-recognition.onspeechend = () => {
-  recognition.stop();
-  console.log('Speech recognition has stopped.');
-}
+  function toggleStartStop() {
+    if (recognizing) {
+      recognition.stop();
+      reset();
+    } else {
+      recognition.start();
+      recognizing = true;
+      button.innerHTML = "Click to Stop";
+    }
 
-});
+    function speak(text, callback) {
+      var u = new SpeechSynthesisUtterance();
+      u.text = text;
+      u.lang = 'en-US';
+      u.onend = function () {
+        if (callback) {
+          callback();
+        }
+      };
+
+      u.onerror = function (e) {
+        if (callback) {
+          callback(e);
+        }
+      };
+      speechSynthesis.speak(u);}
+    }
+
+    navigator.webkitGetUserMedia(
+        {
+            audio: true
+        }, 
+        function(stream) 
+        {
+            // "that" is my wrapping object's scope
+            that.stream = stream;
+    
+            var liveSource = context.createMediaStreamSource(stream);
+            var levelChecker = context.createJavaScriptNode(that.bufSize, 1 ,1);
+    
+            liveSource.connect(levelChecker);
+            levelChecker.connect(context.destination);
+            levelChecker.onaudioprocess = function(event) 
+            {
+                var buf = event.inputBuffer.getChannelData(0);
+                var len = buf.length;
+                var rms = 0;
+    
+                // Iterate through buffer
+                for (var i = 0; i < len; i++) 
+                {
+                    rms += Math.abs(buf[i]);
+                }
+                rms = Math.sqrt(rms / len);
+                that.levelCheckerCB(rms);
+            };
+        }
+    );
+
+    function setup() {
+      //createCanvas(200,200);
+      mic = new p5.AudioIn();
+      mic.start();
+    }
+
+    function draw() {
+      var vol = mic.getLevel();
+      ellipse(100, 100, 200, vol * 200);
+    }
